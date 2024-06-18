@@ -26,10 +26,10 @@ public class Defect {
     private String description;
     
     @ManyToOne
-    @JoinColumn(name = "un_id")
+    @JoinColumn(name = "unit_id")
     private Unit unit;
     
     @ManyToOne
-    @JoinColumn(name = "eq_id")
+    @JoinColumn(name = "equipment_id")
     private Equipment equipment;
 }
