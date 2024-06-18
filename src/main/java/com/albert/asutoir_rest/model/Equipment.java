@@ -7,14 +7,15 @@ import jakarta.persistence.OneToMany;
 import lombok.Data;
 
 import java.sql.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Data
 public class Equipment {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(generator = "ID_GENERATOR")
     private Long id;
 
     private String name;
@@ -27,10 +28,11 @@ public class Equipment {
 
     private Date commissioningDate;
 
-    @OneToMany
-    private List<Unit> units;
+    @OneToMany(mappedBy = "equipment")
+    private Set<Unit> units = new HashSet<Unit>();
 
-
+    @OneToMany(mappedBy = "equipment")
+    private Set<Defect> defects = new HashSet<Defect>();
 
 }
 

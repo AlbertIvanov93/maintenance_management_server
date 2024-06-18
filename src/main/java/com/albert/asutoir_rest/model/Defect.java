@@ -3,6 +3,8 @@ package com.albert.asutoir_rest.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.Data;
 
 import java.sql.Date;
@@ -12,7 +14,7 @@ import java.sql.Date;
 public class Defect {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(generator = "ID_GENERATOR")
     private Long id;
 
     private int defectivenessLevel;
@@ -22,4 +24,12 @@ public class Defect {
     private Date fixDate;
 
     private String description;
+    
+    @ManyToOne
+    @JoinColumn(name = "un_id")
+    private Unit unit;
+    
+    @ManyToOne
+    @JoinColumn(name = "eq_id")
+    private Equipment equipment;
 }
